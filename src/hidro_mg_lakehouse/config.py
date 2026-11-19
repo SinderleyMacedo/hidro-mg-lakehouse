@@ -12,6 +12,11 @@ def schema(layer: str) -> str:
     return f"{catalog()}.{layer}"
 
 
+def table(layer: str, name: str) -> str:
+    """Nome qualificado de uma tabela (catálogo.schema.tabela)."""
+    return f"{schema(layer)}.{name}"
+
+
 def raw_volume_root() -> str:
     """Raiz do volume com os arquivos de origem (ADR 0003)."""
     default = f"/Volumes/{catalog()}/raw/arquivos"
