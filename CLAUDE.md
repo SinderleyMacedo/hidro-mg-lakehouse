@@ -24,9 +24,11 @@ Guia para o Claude Code neste repositório. Este arquivo é a base reutilizável
 | `raw` | Volumes com os arquivos de origem, sem alteração |
 | `bronze` | Uma tabela por fonte, mais metadados de carga (origem, data, hash) |
 | `silver` | Dados limpos e padronizados, com chave estação para município |
-| `gold` | `fato_qualidade_agua`, `fato_vazao`, `fato_clima`, `dim_estacao`, `dim_municipio`, `dim_parametro`, violações dos limites |
+| `gold` | `fact_water_quality`, `fact_flow`, `fact_weather`, `fact_limit_violation`, `dim_station`, `dim_municipality`, `dim_parameter` |
 | `ops` (opcional) | Histórico de execuções de jobs |
 | `dq` (opcional) | Resultados do `hidrodq` |
+
+Nomes (ADR 0003, detalhes em `docs/naming.md`): tabelas, colunas e notebooks em inglês e `snake_case`; bronze `<source>_<entity>` com colunas de controle `_source`, `_source_file`, `_batch_id`, `_loaded_at`, `_row_hash`; estação única em `silver.station` (`station_id`, `data_source`, prioridade ana > igam > inmet); notebooks numerados por camada (`01_extract_*`, `02_bronze_*`, `03_silver_*`, `04_gold_*`) que só chamam funções de `src/hidro_mg_lakehouse/`.
 
 Regras: cada camada só lê da anterior; bronze é imutável e reprocessável; transformações são idempotentes; nomes de catálogo e schema vêm de variáveis de ambiente, nunca ficam fixos no código.
 
@@ -102,12 +104,12 @@ Preencha ao criar o repositório a partir do modelo.
 - **Projetos cobertos:** Projeto 1 (Lakehouse) e Projeto 2 (Airflow e dbt)
 - **Janela do cronograma:** 07/12/2026 a 24/01/2027 (P1) e 10/05 a 30/05/2027 (P2)
 - **Bacia e período de dados:** `<a definir na Fase 0>`
-- **Catálogo e schemas do Unity Catalog:** `<ex.: workspace.bronze ... ou hidro_mg.bronze ...>` (pendente: confirmar se o Free Edition permite criar catálogo novo)
+- **Catálogo e schemas do Unity Catalog:** `hidro_mg` com schemas `raw`, `bronze`, `silver`, `gold`, `ops`, `dq` e volume `hidro_mg.raw.arquivos` (criados e verificados em 18/11/2026; o Free Edition permite catálogo próprio)
 - **Fontes usadas aqui:** IGAM, ANA, INMET, IBGE, normas
 - **Serviços Docker:** Airflow (a partir do Projeto 2)
 - **Pendências de verificação:** `<lista de TODO(verificar)>`
-- **Registros de decisão:** `<links para docs/adr/...>`
+- **Registros de decisão:** [0003 convenção de nomes](docs/adr/0003-naming-convention.md)
 
 | Data | Decisão | ADR |
 | --- | --- | --- |
-|  |  |  |
+| 19/11/2026 | Convenção de nomes em inglês; tabela única `silver.station` | [0003](docs/adr/0003-naming-convention.md) |
