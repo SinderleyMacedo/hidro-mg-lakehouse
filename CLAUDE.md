@@ -114,5 +114,5 @@ Preencha ao criar o repositório a partir do modelo.
 
 | Data | Decisão | ADR |
 | --- | --- | --- |
-| 19/11/2026 | Convenção de nomes em inglês; tabela única `silver.station` | [0003](docs/adr/0003-naming-convention.md) |
+| 18/11/2026 | Convenção de nomes em inglês; tabela única `silver.station` | [0003](docs/adr/0003-naming-convention.md) |
 | 18/11/2026 | COMMENT completo em português em todo objeto do Unity Catalog, aplicado pelo código | [0004](docs/adr/0004-unity-catalog-comments.md) |
