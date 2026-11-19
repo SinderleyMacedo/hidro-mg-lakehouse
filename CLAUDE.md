@@ -32,6 +32,8 @@ Nomes (ADR 0003, detalhes em `docs/naming.md`): tabelas, colunas e notebooks em 
 
 Regras: cada camada só lê da anterior; bronze é imutável e reprocessável; transformações são idempotentes; nomes de catálogo e schema vêm de variáveis de ambiente, nunca ficam fixos no código.
 
+Toda tabela, schema, volume e coluna criados devem ter COMMENT completo em português. Os textos ficam em `src/hidro_mg_lakehouse/catalog/comments.py` e são aplicados pelo código (`00_setup_catalog` e notebooks de cada camada), nunca só à mão; um teste falha se alguma coluna ficar sem comentário.
+
 ## Desenvolvimento com PySpark no Databricks
 
 - Código Spark vive em `src/`; um único módulo cria a sessão (`DatabricksSession` localmente via Databricks Connect, `SparkSession` quando roda dentro do Databricks).
