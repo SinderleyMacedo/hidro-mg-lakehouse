@@ -110,8 +110,9 @@ Preencha ao criar o repositório a partir do modelo.
 - **Fontes usadas aqui:** IGAM, ANA, INMET, IBGE, normas
 - **Serviços Docker:** Airflow (a partir do Projeto 2)
 - **Pendências de verificação:** `<lista de TODO(verificar)>`
-- **Registros de decisão:** [0003 convenção de nomes](docs/adr/0003-naming-convention.md)
+- **Registros de decisão:** [0003 convenção de nomes](docs/adr/0003-naming-convention.md), [0004 comentários no Unity Catalog](docs/adr/0004-unity-catalog-comments.md)
 
 | Data | Decisão | ADR |
 | --- | --- | --- |
 | 19/11/2026 | Convenção de nomes em inglês; tabela única `silver.station` | [0003](docs/adr/0003-naming-convention.md) |
+| 18/11/2026 | COMMENT completo em português em todo objeto do Unity Catalog, aplicado pelo código | [0004](docs/adr/0004-unity-catalog-comments.md) |
