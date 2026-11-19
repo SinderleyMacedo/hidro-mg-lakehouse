@@ -14,7 +14,8 @@ dependencies = []
 [project.optional-dependencies]
 dev = ["ruff>=0.6", "pytest>=8.0"]
 # PySpark remoto no Databricks a partir do VS Code (Databricks Connect).
-# TODO(verificar): versão para o serverless do Free Edition (docs: Connect 18.0 a 18.3 = serverless v5, Python 3.12).
+# Verificado em 18/11/2026: Connect 18.3.8 (Python 3.12) funciona no serverless do Free Edition
+# (leitura do volume, criação e consulta de tabelas Delta).
 databricks = ["databricks-connect>=18.0,<19"]
 
 [tool.setuptools.packages.find]
