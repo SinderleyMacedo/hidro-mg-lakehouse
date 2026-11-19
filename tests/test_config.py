@@ -1,11 +1,17 @@
-from hidro_mg_lakehouse.config import schema
+from hidro_mg_lakehouse.config import raw_volume_root, schema
 
 
 def test_schema_uses_default_catalog(monkeypatch):
     monkeypatch.delenv("UC_CATALOG", raising=False)
-    assert schema("bronze") == "workspace.bronze"
+    assert schema("bronze") == "hidro_mg.bronze"
 
 
 def test_schema_uses_env_catalog(monkeypatch):
-    monkeypatch.setenv("UC_CATALOG", "hidro_mg_lakehouse")
-    assert schema("gold") == "hidro_mg_lakehouse.gold"
+    monkeypatch.setenv("UC_CATALOG", "outro_catalogo")
+    assert schema("gold") == "outro_catalogo.gold"
+
+
+def test_raw_volume_root_follows_catalog(monkeypatch):
+    monkeypatch.delenv("UC_RAW_VOLUME", raising=False)
+    monkeypatch.setenv("UC_CATALOG", "hidro_mg")
+    assert raw_volume_root() == "/Volumes/hidro_mg/raw/arquivos"
