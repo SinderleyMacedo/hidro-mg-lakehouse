@@ -1,6 +1,6 @@
 # 0003. Convenção de nomes (tabelas, colunas, volumes, notebooks)
 
-Data: 2026-11-19
+Data: 2026-11-18
 Status: aceita (aprovada pelo usuário na conversa; detalhes completos em `docs/naming.md`)
 
 ## Contexto

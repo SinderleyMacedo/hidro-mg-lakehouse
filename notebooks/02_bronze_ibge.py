@@ -8,6 +8,7 @@
 # COMMAND ----------
 
 from hidro_mg_lakehouse.bronze import ibge
+from hidro_mg_lakehouse.catalog import comments
 from hidro_mg_lakehouse.config import raw_volume_root
 from hidro_mg_lakehouse.session import get_spark
 
@@ -18,4 +19,5 @@ root = raw_volume_root()
 
 for entity in ibge.ENTITIES:
     target, count = ibge.load_entity(spark, entity, root)
-    print(f"{target}: {count} linhas gravadas")
+    comments.apply_table_comments(spark, "bronze", f"{ibge.SOURCE}_{entity}")
+    print(f"{target}: {count} linhas gravadas, comentários aplicados")

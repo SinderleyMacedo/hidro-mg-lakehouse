@@ -32,6 +32,8 @@ Nomes (ADR 0003, detalhes em `docs/naming.md`): tabelas, colunas e notebooks em 
 
 Regras: cada camada só lê da anterior; bronze é imutável e reprocessável; transformações são idempotentes; nomes de catálogo e schema vêm de variáveis de ambiente, nunca ficam fixos no código.
 
+Toda tabela, schema, volume e coluna criados devem ter COMMENT completo em português. Os textos ficam em `src/hidro_mg_lakehouse/catalog/comments.py` e são aplicados pelo código (`00_setup_catalog` e notebooks de cada camada), nunca só à mão; um teste falha se alguma coluna ficar sem comentário.
+
 ## Desenvolvimento com PySpark no Databricks
 
 - Código Spark vive em `src/`; um único módulo cria a sessão (`DatabricksSession` localmente via Databricks Connect, `SparkSession` quando roda dentro do Databricks).
@@ -108,8 +110,9 @@ Preencha ao criar o repositório a partir do modelo.
 - **Fontes usadas aqui:** IGAM, ANA, INMET, IBGE, normas
 - **Serviços Docker:** Airflow (a partir do Projeto 2)
 - **Pendências de verificação:** `<lista de TODO(verificar)>`
-- **Registros de decisão:** [0003 convenção de nomes](docs/adr/0003-naming-convention.md)
+- **Registros de decisão:** [0003 convenção de nomes](docs/adr/0003-naming-convention.md), [0004 comentários no Unity Catalog](docs/adr/0004-unity-catalog-comments.md)
 
 | Data | Decisão | ADR |
 | --- | --- | --- |
-| 19/11/2026 | Convenção de nomes em inglês; tabela única `silver.station` | [0003](docs/adr/0003-naming-convention.md) |
+| 18/11/2026 | Convenção de nomes em inglês; tabela única `silver.station` | [0003](docs/adr/0003-naming-convention.md) |
+| 18/11/2026 | COMMENT completo em português em todo objeto do Unity Catalog, aplicado pelo código | [0004](docs/adr/0004-unity-catalog-comments.md) |
